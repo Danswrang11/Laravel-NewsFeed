@@ -4,13 +4,13 @@
     <div class="flex justify-center">
         <div class="item-center w-full max-w-4xl bg-white bg-opacity-40 p-6 rounded-lg shadow-md">
             <h1 class="text-2xl font-bold text-center mb-8">Create New Post</h1>
-            <form action="" method="POST" enctype="multipart/form-data">
+            <form action="{{route('Post.form')}}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="space-y-4">
                     <div class="grid grid-cols-2 gap-4">
                         <div>
-                            <label for="topic_name" class="block text-sm font-medium text-gray-700">Topic Name</label>
-                            <input type="text" name="topic_name" id="topic_name" class="mt-1 block w-full p-2 border border-gray-300 rounded-md" required>
+                            <label for="topic" class="block text-sm font-medium text-gray-700">Topic Name</label>
+                            <input type="text" name="topic" id="topic_name" class="mt-1 block w-full p-2 border border-gray-300 rounded-md" required>
                         </div>
                         <!-- Category Dropdown -->
                         <div>
@@ -35,11 +35,7 @@
                             <label for="author" class="block text-sm font-medium text-gray-700">Author</label>
                             <input type="text" name="author" id="author" class="mt-1 block w-full p-2 border border-gray-300 rounded-md" required>
                         </div>
-                        <!-- Published Date -->
-                        <div>
-                            <label for="published_date" class="block text-sm font-medium text-gray-700">Published Date</label>
-                            <input type="date" name="published_date" id="published_date" class="mt-1 block w-full p-2 border border-gray-300 rounded-md" required>
-                        </div>
+
                     </div>
 
                     <!-- Description -->

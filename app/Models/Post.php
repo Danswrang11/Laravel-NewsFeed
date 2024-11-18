@@ -11,7 +11,7 @@ class Post extends Model
     protected $table ="posts";
     protected $primaryKey ='post_id';
     protected $fillable = [
-        'topic_name', 'image', 'description', 'author', 'published_date', 'category_id', 'status'
+        'topic', 'image', 'description', 'author', 'category_id'
     ];
 
     // A post belongs to a category (one-to-many or many-to-many)
