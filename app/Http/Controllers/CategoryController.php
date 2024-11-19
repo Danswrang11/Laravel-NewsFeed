@@ -15,17 +15,20 @@ class CategoryController extends Controller
     // Store the form data
     public function store(Request $request)
     {
-        $request->validate([
+        $validated = $request->validate([
             'topic' => 'required|string|max:200',
             'description' => 'nullable|string',
         ]);
 
-        Category::create([
-            'topic' => $request->topic,
-            'description' => $request->description,
-        ]);
+        Category::create($validated);
 
-        return redirect()->back()->with('success', 'Category created successfully!');
+        return redirect()->back()->with('success', 'Category added successfully!');
+        // Category::create([
+        //     'topic' => $request->topic,
+        //     'description' => $request->description,
+        // ]);
+
+        // return redirect()->back()->with('success', 'Category created successfully!');
     }
 
     public function list()

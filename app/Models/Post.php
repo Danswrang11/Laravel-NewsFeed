@@ -11,7 +11,11 @@ class Post extends Model
     protected $table ="posts";
     protected $primaryKey ='post_id';
     protected $fillable = [
-        'topic', 'image', 'description', 'author', 'category_id'
+        'topic', 
+        'description',
+        'author', 
+        'category_id',
+        'image'
     ];
 
     // A post belongs to a category (one-to-many or many-to-many)
@@ -23,6 +27,7 @@ class Post extends Model
     // A post can have many tags
     public function tags()
     {
-        return $this->belongsToMany(Tag::class, 'post_tag');
+        return $this->belongsToMany(Tag::class, 'post_tag','id', 'tag_id');
     }
+
 }

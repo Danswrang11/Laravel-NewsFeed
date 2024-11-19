@@ -12,14 +12,16 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('posts', function (Blueprint $table) {
-            $table->id('post_id');
+            $table->id('post_id'); // Primary Key
             $table->string('topic');
             $table->text('description');
+            $table->string('images')->nullable(); // Store the image path
             $table->string('author');
-            $table->string('images')->nullable(); // For storing image paths
-            $table->unsignedBigInteger('category_id');  // This will be the foreign key
-            $table->foreign('category_id')->references('category_id')->on('categories')->onDelete('cascade');
+            $table->unsignedBigInteger('category_id'); // Foreign Key
             $table->timestamps();
+
+            // Foreign key constraint
+            $table->foreign('category_id')->references('category_id')->on('categories')->onDelete('cascade');
         });
     }
 

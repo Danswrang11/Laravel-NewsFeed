@@ -25,8 +25,8 @@ Route::prefix('Admin')->group(function(){
     //For Post
     Route::prefix('/Post')->group(function(){
         Route::get('/Form', [PostController::class, 'form'])->name('Post.form');
-        Route::get('/List', [PostController::class, 'list'])->name('Post.list');
         Route::post('/Form', [PostController::class, 'store'])->name('Post.store');
+        Route::get('/List', [PostController::class, 'list'])->name('Post.list');
         //Editing & Delete Category
         Route::get('/{id}/Edit', [PostController::class, 'edit'])->name('Post.edit');
         Route::put('/Post/{id}', [PostController::class, 'update'])->name('Post.update');
@@ -36,8 +36,8 @@ Route::prefix('Admin')->group(function(){
     //For Category
     Route::prefix('/Category')->group(function(){
         Route::get('/Form', [CategoryController::class, 'form'])->name('Category.form');
-        Route::get('/List', [CategoryController::class, 'list'])->name('Category.list');
         Route::post('/Form', [CategoryController::class, 'store'])->name('categories.store');
+        Route::get('/List', [CategoryController::class, 'list'])->name('Category.list');    
         //Editing & Delete Category
         Route::get('/{id}/Edit', [CategoryController::class, 'edit'])->name('Category.edit');
         Route::put('/Category/{id}', [CategoryController::class, 'update'])->name('Category.update');

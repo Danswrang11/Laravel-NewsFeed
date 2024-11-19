@@ -13,11 +13,13 @@ return new class extends Migration
     {
         Schema::create('posts_tags', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('post_id');  // This will be the foreign key
-            $table->foreign('post_id')->references('post_id')->on('posts')->onDelete('cascade');
-            $table->unsignedBigInteger('tag_id');  // This will be the foreign key
-            $table->foreign('tag_id')->references('tag_id')->on('tags')->onDelete('cascade');
             $table->timestamps();
+            // Foreign Key
+            $table->unsignedBigInteger('post_id');
+            $table->unsignedBigInteger('tag_id'); 
+            // Foreign key constraint
+            $table->foreign('post_id')->references('post_id')->on('posts')->onDelete('cascade');
+            $table->foreign('tag_id')->references('tag_id')->on('tags')->onDelete('cascade');
         });
     }
 

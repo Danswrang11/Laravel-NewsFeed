@@ -4,7 +4,13 @@
     <div class="flex justify-center">
         <div class="item-center w-full max-w-4xl bg-white bg-opacity-40 p-6 rounded-lg shadow-md">
             <h1 class="text-2xl font-bold text-center mb-8">Create New Post</h1>
-            <form action="{{route('Post.form')}}" method="POST" enctype="multipart/form-data">
+            @if(session('success'))
+                <div class="bg-green-100 border border-green-300 text-green-700 px-4 py-3 rounded relative mb-4">
+                    <strong class="font-bold">Success!</strong>
+                    <span class="block sm:inline">{{ session('success') }}</span>
+                </div>
+            @endif
+            <form action="{{route('categories.store')}}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="space-y-4">
                     <div class="grid grid-cols-2 gap-4">
@@ -16,18 +22,19 @@
                         <div>
                             <label for="category_id" class="block text-sm font-medium text-gray-700">Category</label> 
                             <select name="category_id" id="category_id" class="mt-1 block w-full p-2 border border-gray-300 rounded-md" placeholder="Select Category" required>
+                                <option>Select Category</option>
                                 @foreach($categories as $category)
-                                    <option value="{{ $category->id }}">{{ $category->topic }}</option>
+                                    <option value="{{ $category->category_id }}">{{ $category->topic }}</option>
                                 @endforeach
                             </select>
                         </div>
                     </div>
 
-                    <div class="grid grid-cols-3 gap-4">
+                    <div class="grid grid-cols-2 gap-4">
                         <!-- Image Upload -->
                         <div>
-                            <label for="image" class="block text-sm font-medium text-gray-700">Upload Image</label>
-                            <input type="file" name="image" id="image" class="mt-1 block w-full p-2 border border-gray-300 rounded-md" accept="image/*" required>
+                            <label for="images" class="block text-sm font-medium text-gray-700">Upload Image</label>
+                            <input type="file" name="images" id="images" class="mt-1 block w-full p-2 border border-gray-300 rounded-md" accept="image/*">
                         </div>
 
                         <!-- Author -->
@@ -51,7 +58,7 @@
                             @foreach($tags as $tag)
                                 <div>
                                     <label class="inline-flex items-center">
-                                        <input type="checkbox" name="tags[]" value="{{ $tag->id }}" 
+                                        <input type="checkbox" name="tags[]" value="{{ $tag->tag_id }}" 
                                             class="form-checkbox h-4 w-4 text-blue-600 border-gray-300 rounded">
                                         <span class="ml-2 text-gray-700">{{ $tag->tag_name }}</span>
                                     </label>

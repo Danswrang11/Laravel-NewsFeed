@@ -21,37 +21,34 @@ class PostController extends Controller
 
     public function store(Request $request)
     {
-        $validated = $request->validate([
+        // Validate the request
+        $request->validate([
             'topic' => 'required|string|max:255',
-            'description' => 'required|string',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'category_id' => 'required|integer',
             'author' => 'required|string|max:255',
-            'category_id' => 'required|exists:categories,category_id',
-            'tags' => 'nullable|array', // Tags are optional and can be an array
-            'tags.*' => 'exists:tags,tag_id', // Ensure each tag is valid
+            'description' => 'required|string',
+            'images' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Validate the image file
         ]);
 
-        // Handle image upload
-        $imagePath = $request->file('image')->store('public/Post_images');
-        $imageUrl = Storage::url($imagePath);
+        $post = new Post;
 
-        // Create post
-        $post = Post::create([
-            'topic' => $validated['topic'],
-            'description' => $validated['description'],
-            'image' => $imageUrl,
-            'author' => $validated['author'],
-            'category_id' => $validated['category_id'],
-        ]);
+        // Assign form inputs to the Post model
+        $post->topic = $request['topic'];
+        $post->category_id = $request['category_id'];
+        $post->author = $request['author'];
+        $post->description = $request['description'];
 
-        // Attach selected tags to the post (if any)
-        if ($request->has('tags')) {
-            $post->tags()->sync($validated['tags']);
+        // Handle the image upload
+        if ($request->hasFile('images')) {
+            // Store the file and retrieve its path
+            $imagePath = $request->file('images')->store('images', 'public'); // Saves in storage/app/public/images
+            $post->images = $imagePath; // Save the path to the database
         }
 
-        return redirect()->route('posts.index')->with('success', 'Post created successfully!');
-    }
+        $post->save();
 
+        return redirect()->back()->with('success', 'Post created successfully!');
+    }
 }
 
 

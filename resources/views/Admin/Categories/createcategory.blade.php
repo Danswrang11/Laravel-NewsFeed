@@ -5,12 +5,12 @@
     <div class="flex justify-center">
         <div class="w-full max-w-md bg-white bg-opacity-40 p-6 rounded-lg shadow-md">
             @if(session('success'))
-                <div class="bg-green-500 text-white p-3 rounded mb-4">
+                <div class="bg-green-300 text-white p-3 rounded mb-4">
                     {{ session('success') }}
                 </div>
             @endif
 
-            <form action="" method="POST">
+            <form action="{{route('categories.store')}}" method="POST">
                 @csrf
                 <h2 class="text-2xl font-bold mb-4 text-center">Create Category</h2>
 
