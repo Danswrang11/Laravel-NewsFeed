@@ -3,7 +3,7 @@
 @section('content')
     <div class="w-full max-w-md mx-auto bg-opacity-40">
         @if(session('success'))
-            <div class="bg-green-500 text-white p-3 rounded mb-4">
+            <div class="bg-green-400 text-white p-3 rounded mb-4">
                 {{ session('success') }}
             </div>
         @endif

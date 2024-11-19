@@ -37,7 +37,7 @@
                     </button>
                     <ul id="PostDropdown" class="hidden ml-4 mt-2 space-y-2">
                         <li><a href="{{route('Post.form')}}" class="block py-2 px-4 hover:bg-blue-300 rounded">Create</a></li>
-                        <li><a href="{{route('Category.list')}}" class="block py-2 px-4 hover:bg-blue-300 rounded">List</a></li>
+                        <li><a href="{{route('Post.list')}}" class="block py-2 px-4 hover:bg-blue-300 rounded">List</a></li>
                     </ul>
                 </li>
 

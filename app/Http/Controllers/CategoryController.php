@@ -23,12 +23,6 @@ class CategoryController extends Controller
         Category::create($validated);
 
         return redirect()->back()->with('success', 'Category added successfully!');
-        // Category::create([
-        //     'topic' => $request->topic,
-        //     'description' => $request->description,
-        // ]);
-
-        // return redirect()->back()->with('success', 'Category created successfully!');
     }
 
     public function list()

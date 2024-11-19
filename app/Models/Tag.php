@@ -16,6 +16,6 @@ class Tag extends Model
     // A tag can belong to many posts through belongsToMany function
     public function posts()
     {
-        return $this->belongsToMany(Post::class, 'post_tag');
+        return $this->belongsToMany(Post::class, 'posts_tags','post_id', 'tag_id');
     }
 }

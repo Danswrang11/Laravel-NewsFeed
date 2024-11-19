@@ -29,7 +29,7 @@ Route::prefix('Admin')->group(function(){
         Route::get('/List', [PostController::class, 'list'])->name('Post.list');
         //Editing & Delete Category
         Route::get('/{id}/Edit', [PostController::class, 'edit'])->name('Post.edit');
-        Route::put('/Post/{id}', [PostController::class, 'update'])->name('Post.update');
+        Route::put('/Post/{post_id}', [PostController::class, 'update'])->name('Post.update');
         Route::delete('/Post/{id}', [PostController::class, 'delete'])->name('Post.delete');
     })->middleware(AdminMiddleware::class);
 
@@ -41,7 +41,7 @@ Route::prefix('Admin')->group(function(){
         //Editing & Delete Category
         Route::get('/{id}/Edit', [CategoryController::class, 'edit'])->name('Category.edit');
         Route::put('/Category/{id}', [CategoryController::class, 'update'])->name('Category.update');
-        Route::delete('/Category/{id}', [CategoryController::class, 'delete'])->name('Category.delete');
+        Route::delete('/Category/{post_id}', [CategoryController::class, 'delete'])->name('Category.delete');
     })->middleware(AdminMiddleware::class);
 
     //For Tags

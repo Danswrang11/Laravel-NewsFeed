@@ -15,19 +15,19 @@ class Post extends Model
         'description',
         'author', 
         'category_id',
-        'image'
+        'images'
     ];
 
     // A post belongs to a category (one-to-many or many-to-many)
     public function categories()
     {
-        return $this->belongsToMany(Category::class, 'categories');
+        return $this->belongsTo(Category::class, 'category_id','category_id');
     }
 
     // A post can have many tags
     public function tags()
     {
-        return $this->belongsToMany(Tag::class, 'post_tag','id', 'tag_id');
+        return $this->belongsToMany(Tag::class, 'posts_tags','post_id', 'tag_id');
     }
 
 }

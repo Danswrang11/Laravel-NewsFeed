@@ -5,7 +5,7 @@
     <div class="flex justify-center">
         <div class="w-full max-w-md bg-white bg-opacity-40 p-6 rounded-lg shadow-md">
             @if(session('success'))
-                <div class="bg-green-300 text-white p-3 rounded mb-4">
+                <div class="bg-green-400 text-white p-3 rounded mb-4">
                     {{ session('success') }}
                 </div>
             @endif

@@ -23,7 +23,7 @@
                         <td class="py-2 px-4 border-b">{{ $category->topic }}</td>
                         <td class="py-2 px-4 border-b">{{ $category->description }}</td>
                         <td class="py-2 px-4 border-b text-center">
-                            <a href="{{route('Category.edit', $category->category_id)}}" class="text-indigo-500 hover:underline">Edit</a>
+                            <a href="{{route('Category.edit', $category->category_id)}}" class="text-indigo-500 hover:underline">Edit</a> |
                             <form action="{{route('Category.delete', $category->category_id)}}" method="POST" class="inline-block ml-2">
                                 @csrf
                                 @method('DELETE')
