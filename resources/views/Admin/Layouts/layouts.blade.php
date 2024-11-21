@@ -105,22 +105,6 @@
                 </div>
             </header>
 
-
-            <!-- Breadcrumb Bar -->
-            <nav class="flex mb-6 text-gray-700" aria-label="Breadcrumb">
-                <ol class="inline-flex items-center space-x-1 md:space-x-3">
-                    <!-- Home Link -->
-                    <li class="inline-flex items-center">
-                        <a href="{{ route('Admin.dashboard') }}" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-emerald-500">
-                            <x-lucide-home class="w-5 h-5 mr-1 text-emerald-500" />
-                            Dashboard
-                        </a>
-                    </li>
-                    <!-- Dynamic Breadcrumb Levels -->
-                    @yield('breadcrumb')
-                </ol>
-            </nav>
-
             <!-- Page Content -->
             <main class="p-6 overflow-auto">
                 @yield('content')
