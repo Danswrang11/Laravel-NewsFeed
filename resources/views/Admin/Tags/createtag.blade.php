@@ -1,14 +1,14 @@
 @extends('Admin.Layouts.layouts')
 
 @section('content')
-    <div class="w-full max-w-md mx-auto bg-opacity-40">
+    <div class="w-full max-w-md mx-auto">
         @if(session('success'))
             <div class="bg-green-400 text-white p-3 rounded mb-4">
                 {{ session('success') }}
             </div>
         @endif
 
-        <form action="{{ route('tags.store') }}" method="POST" class="bg-white p-6 rounded-lg shadow-md bg-opacity-40">
+        <form action="{{ route('tags.store') }}" method="POST" class="bg-white p-6 rounded-lg shadow-md">
             @csrf
             <h2 class="text-2xl font-bold mb-4">Create Tag</h2>
 

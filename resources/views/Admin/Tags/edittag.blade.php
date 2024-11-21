@@ -1,7 +1,7 @@
 @extends('Admin.Layouts.layouts')
 
 @section('content')
-    <div class="w-full max-w-3xl mx-auto bg-white rounded-lg bg-opacity-40">
+    <div class="w-full max-w-3xl mx-auto bg-white rounded-lg">
         <h2 class="text-2xl font-bold mb-4">Edit Tag</h2>
 
         @if(session('success'))
@@ -10,7 +10,7 @@
             </div>
         @endif
 
-        <form action="{{ route('tags.update', $tag->tag_id) }}" method="POST" class="bg-opacity-40 border border-gray-300 shadow-md p-4">
+        <form action="{{ route('tags.update', $tag->tag_id) }}" method="POST" class="border border-gray-300 shadow-md p-4">
             @csrf
             @method('PUT')
 

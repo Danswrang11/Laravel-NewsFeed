@@ -2,10 +2,10 @@
 
 @section('content')
     <div class="container mx-auto py-8">
-        <div class="card-header bg-white bg-opacity-70">
+        <div class="card-header bg-white">
             <h1 class="text-2xl text-black font-bold text-center">List of Posts</h1>
         </div>
-        <table class="min-w-full bg-white border border-gray-300 bg-opacity-50">
+        <table class="min-w-full bg-white border border-gray-300">
             <thead>
                 <tr>
                     <th class="px-4 py-2 border">ID</th>

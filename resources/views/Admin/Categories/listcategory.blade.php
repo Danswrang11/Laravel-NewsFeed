@@ -2,7 +2,7 @@
  @extends('Admin.Layouts.layouts')
 
 @section('content')
-    <div class="w-full max-w-5xl mx-auto bg-white rounded-lg bg-opacity-40">
+    <div class="w-full max-w-5xl mx-auto bg-white rounded-lg">
         <h2 class="text-xl font-bold mb-4">Categories</h2>
         @if($categories->isEmpty())
             <p class="text-gray-500">No categories available.</p>

@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="flex justify-center">
-        <div class="item-center w-full max-w-4xl bg-white bg-opacity-40 p-6 rounded-lg shadow-md">
+        <div class="item-center w-full max-w-4xl bg-white p-6 rounded-lg shadow-md">
             <h1 class="text-2xl font-bold text-center mb-8">Create New Post</h1>
             @if(session('success'))
                 <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-4">
