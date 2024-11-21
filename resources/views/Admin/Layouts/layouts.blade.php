@@ -1,4 +1,3 @@
-<!-- resources/views/layouts/admin.blade.php -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,104 +7,125 @@
     @vite('resources/css/app.css') <!-- Add Tailwind CSS -->
 
     <script defer>
-        function toggleDropdown() {
-            document.getElementById('categoryDropdown').classList.toggle('hidden');
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('w-20');
+            document.getElementById('sidebar').classList.toggle('w-64');
+            document.querySelector('.sidebar-logo').classList.toggle('hidden'); // Hide the DNews logo
+            document.querySelectorAll('.sidebar-text').forEach(el => el.classList.toggle('hidden'));
         }
-        function toggleDropdown2() {
-            document.getElementById('TagDropdown').classList.toggle('hidden');
+        function toggleDropdown(id) {
+            document.getElementById(id).classList.toggle('hidden');
         }
-        function toggleDropdown3() {
-            document.getElementById('PostDropdown').classList.toggle('hidden');
-        }
+
     </script>
-    
 </head>
 <body class="bg-gray-100">
 
-    <!-- Side Navigation -->
+    <!-- Main Layout -->
     <div class="flex h-screen">
-        <div class="w-64 bg-blue-200 text-white p-5">
-            <h2 class="text-2xl font-bold mb-6">DNews</h2>
-            <ul>
-                <li><a href="{{route('Admin.dashboard')}}" class="block py-2 px-4 hover:bg-blue-300 rounded">Dashboard</a></li>
-                <li class="relative">
-                    <button onclick="toggleDropdown3()" class="block w-full text-left py-2 px-4 hover:bg-blue-300 rounded flex justify-between items-center">
-                        Post
-                        <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                        </svg>
-                    </button>
-                    <ul id="PostDropdown" class="hidden ml-4 mt-2 space-y-2">
-                        <li><a href="{{route('Post.form')}}" class="block py-2 px-4 hover:bg-blue-300 rounded">Create</a></li>
-                        <li><a href="{{route('Post.list')}}" class="block py-2 px-4 hover:bg-blue-300 rounded">List</a></li>
-                    </ul>
-                </li>
-
-
-                <!-- categoryDropdown -->
-                <li class="relative">
-                    <button onclick="toggleDropdown()" class="block w-full text-left py-2 px-4 hover:bg-blue-300 rounded flex justify-between items-center">
-                        Categories
-                        <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                        </svg>
-                    </button>
-                    <ul id="categoryDropdown" class="hidden ml-4 mt-2 space-y-2">
-                        <li><a href="{{route('Category.form')}}" class="block py-2 px-4 hover:bg-blue-300 rounded">Create</a></li>
-                        <li><a href="{{route('Category.list')}}" class="block py-2 px-4 hover:bg-blue-300 rounded">List</a></li>
-                    </ul>
-                </li>
-
-                <!-- TagDropdown -->
-                <li class="relative">
-                    <button onclick="toggleDropdown2()" class="block w-full text-left py-2 px-4 hover:bg-blue-300 rounded flex justify-between items-center">
-                        Tags
-                        <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                        </svg>
-                    </button>
-                    <ul id="TagDropdown" class="hidden ml-4 mt-2 space-y-2">
-                        <li><a href="{{route('Tag.form')}}" class="block py-2 px-4 hover:bg-blue-300 rounded">Create</a></li>
-                        <li><a href="{{route('Tag.list')}}" class="block py-2 px-4 hover:bg-blue-300 rounded">List</a></li>
-                    </ul>
-                </li>
-
-                <li><a href="#" class="block py-2 px-4 hover:bg-blue-300 rounded">Users</a></li>
-                <li><a href="#" class="block py-2 px-4 hover:bg-blue-300 rounded">Settings</a></li>
-            </ul>
+        <!-- Sidebar -->
+        <div id="sidebar" class="w-64 bg-white shadow-md flex flex-col justify-between transition-width duration-300">
+            <!-- Logo and Admin -->
+            <div class="p-4 flex items-center justify-between border-b">
+                <!-- Adjust logo visibility -->
+                <span class="font-bold text-4xl text-emerald-500 transition-all duration-300 sidebar-logo">TheNewsPit</span>
+                <button onclick="toggleSidebar()" class="text-gray-600 hover:text-gray-800">
+                <x-lucide-menu class="w-6 h-6 text-emerald-500"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+            
+            <!-- Navigation -->
+            <nav class="flex-1 p-4">
+                <ul class="space-y-2">
+                    <li>
+                        <a href="{{ route('Admin.dashboard') }}" class="flex items-center space-x-2 p-2 rounded hover:bg-emerald-300">
+                        <x-lucide-layout-dashboard class="w-6 h-6 text-emerald-500 hover:text-emerald-600"/>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h11M9 21V3"/>
+                            </svg>
+                            <span class="sidebar-text text-gray-950">Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <button onclick="toggleDropdown('postDropdown')" class="w-full flex items-center justify-between p-2 rounded hover:bg-gray-100">
+                            <div class="flex items-center space-x-2">
+                            <x-lucide-badge-plus class="w-6 h-6 text-emerald-500 hover:text-emerald-600"/>
+                                <span class="sidebar-text text-gray-800">Posts</span>
+                            </div>
+                            <x-lucide-arrow-down-from-line class="w-3 h-3 text-emerald-500 hover:text-emerald-600"/>
+                        </button>
+                        <ul id="postDropdown" class="hidden pl-8 space-y-2">
+                            <li><a href="{{ route('Post.form') }}" class="block p-2 rounded hover:bg-gray-100">Create</a></li>
+                            <li><a href="{{ route('Post.list') }}" class="block p-2 rounded hover:bg-gray-100">List</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <button onclick="toggleDropdown('categoryDropdown')" class="w-full flex items-center justify-between p-2 rounded hover:bg-gray-100">
+                            <div class="flex items-center space-x-2">
+                            <x-lucide-combine class="w-6 h-6 text-emerald-500 hover:text-emerald-600"/>
+                                <span class="sidebar-text text-gray-800">Categories</span>
+                            </div>
+                            <x-lucide-arrow-down-from-line class="w-3 h-3 text-emerald-500 hover:text-emerald-600"/>
+                        </button>
+                        <ul id="categoryDropdown" class="hidden pl-8 space-y-2">
+                            <li><a href="{{ route('Category.form') }}" class="block p-2 rounded hover:bg-gray-100">Create</a></li>
+                            <li><a href="{{ route('Category.list') }}" class="block p-2 rounded hover:bg-gray-100">List</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <button onclick="toggleDropdown('tagDropdown')" class="w-full flex items-center justify-between p-2 rounded hover:bg-gray-100">
+                            <div class="flex items-center space-x-2">
+                            <x-lucide-tags class="w-6 h-6 text-emerald-500 hover:text-emerald-600"/>
+                                <span class="sidebar-text text-gray-800">Tags</span>
+                            </div>
+                            <x-lucide-arrow-down-from-line class="w-3 h-3 text-emerald-500 hover:text-emerald-600"/>
+                        </button>
+                        <ul id="tagDropdown" class="hidden pl-8 space-y-2">
+                            <li class="flex"><a href="{{ route('Tag.form') }}" class="block p-2 rounded hover:bg-gray-100">Create</a></li>
+                            <li><a href="{{ route('Tag.list') }}" class="block p-2 rounded hover:bg-gray-100">List</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
         </div>
 
         <!-- Main Content -->
-        <div class="flex-1 h-screen md:h-full bg-cover bg-center bg-no-repeat" style="background-image: url('/Images/background.jpg');">
+        <div class="flex-1 flex flex-col">
             <!-- Top Navigation Bar -->
-            <div class="bg-green-100 shadow-md px-4 py-2 flex justify-between items-center">
-                <div>
-                    <img src="{{ asset('images/logo2.png') }}" alt="DNews Logo" class="h-20">
+            <header class="flex items-center justify-between p-4 shadow-md bg-white">
+                <div class="flex items-center space-x-2">
+                    <span class="font-bold text-xl text-gray-800">Admin</span>
+                    <input type="text" placeholder="Search here..." class="p-2 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500">
                 </div>
-
                 <div class="flex items-center space-x-4">
-
-                    <a href="" class="text-red-500 hover:text-red-700 text-xl">Logout</a>
-
-                    <div class="flex items-center space-x-3">
-                        <span class="text-xl font-medium">Administrator</span>
-                        <div>
-                            <!-- <img src="{{ asset('images/logo.png') }}" alt="DNews Logo" class="h-20"> -->
-                            <img src="{{ asset('images/profile.png') }}" alt="Profile Photo" class="w-10 h-10 rounded-full">
-                        </div>
-                        
-                    </div>
-
+                    <a href="#" class="text-gray-800">
+                        <x-lucide-log-out class="w-6 h-6 text-red-500 hover:text-red-700"/>
+                    </a>
                 </div>
-            </div>
+            </header>
 
-            <!-- Page Content ----Can Edit or add without chaning the layout of Navigation bar -->
-            <div class="p-6">
+
+            <!-- Breadcrumb Bar -->
+            <nav class="flex mb-6 text-gray-700" aria-label="Breadcrumb">
+                <ol class="inline-flex items-center space-x-1 md:space-x-3">
+                    <!-- Home Link -->
+                    <li class="inline-flex items-center">
+                        <a href="{{ route('Admin.dashboard') }}" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-emerald-500">
+                            <x-lucide-home class="w-5 h-5 mr-1 text-emerald-500" />
+                            Dashboard
+                        </a>
+                    </li>
+                    <!-- Dynamic Breadcrumb Levels -->
+                    @yield('breadcrumb')
+                </ol>
+            </nav>
+
+            <!-- Page Content -->
+            <main class="p-6 overflow-auto">
                 @yield('content')
-            </div>
-
+            </main>
         </div>
     </div>
-
 </body>
 </html>

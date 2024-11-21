@@ -22,7 +22,7 @@ class PostController extends Controller
     public function list(){
         $categories = Category::all();
         $tags = Tag::all();
-        $posts = Post::with('posts')->get();
+        $posts = Post::orderBy('created_at', 'DESC')->get();
         return view('Admin.Post.postlist', compact('posts', 'categories', 'tags'));
     }
 
@@ -61,10 +61,12 @@ class PostController extends Controller
     // Pass the post to the edit view
     public function edit($id)
     {
-        $post = Category::findOrFail($id); // Fetch category by ID
-        return view('Admin.Post.postedit', compact('post'));
+        $categories = Category::all();
+        $tags = Tag::all(); 
+        $post = Post::findOrFail($id); // Fetch category by ID
+        return view('Admin.Post.postedit', compact('post','categories', 'tags'));
     }
-    public function update(Request $request, $post)
+    public function update(Request $request, $id)
     {
         $request->validate([
             'topic' => 'required|string|max:200',
@@ -73,12 +75,14 @@ class PostController extends Controller
             'description' => 'required|string',
             'images' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
-
+        $post = Post::findOrFail($id);
         // Update post details
-        $post->topic = $request->input('topic');
-        $post->category_id = $request->input('category_id');
-        $post->author = $request->input('author');
-        $post->description = $request->input('description');
+        $post->update([
+            'topic' => $request->topic,
+            'category_id' => $request->category_id,
+            'author' => $request->author,
+            'description' => $request->description
+        ]);
 
         // Handle image upload if new image is provided
         if ($request->hasFile('images')) {
@@ -96,13 +100,14 @@ class PostController extends Controller
 
         $post->save();
 
-        return redirect()->back()->with('success', 'Post updated successfully!');
+        return redirect()->route('Post.list')->with('success', 'Post updated successfully!');
     }
 
 
     //Delete Function
-    public function delete($post)
+    public function delete($id)
     {
+        $post = Post::where('post_id', $id)->firstOrFail();
         // Check if the post has an image and the file exists before deleting
         if ($post->images && Storage::disk('public')->exists($post->images)) {
             // Delete the image

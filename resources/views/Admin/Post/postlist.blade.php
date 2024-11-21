@@ -2,8 +2,10 @@
 
 @section('content')
     <div class="container mx-auto py-8">
-        <h1 class="text-2xl font-bold text-center mb-8">List of Posts</h1>
-        <table class="min-w-full bg-white border border-gray-300">
+        <div class="card-header bg-white bg-opacity-70">
+            <h1 class="text-2xl text-black font-bold text-center">List of Posts</h1>
+        </div>
+        <table class="min-w-full bg-white border border-gray-300 bg-opacity-50">
             <thead>
                 <tr>
                     <th class="px-4 py-2 border">ID</th>
@@ -11,28 +13,26 @@
                     <th class="px-4 py-2 border">Category</th>
                     <th class="px-4 py-2 border">Author</th>
                     <th class="px-4 py-2 border">Description</th>
-                    <th class="px-4 py-2 border">Image</th>
+                    <th class="px-4 py-2 border"></th>
                     <th class="px-4 py-2 border">Actions</th>
                 </tr>
             </thead>
             <tbody>
-                @forelse($posts as $post)
+                @forelse($posts as $posts)
                     <tr>
-                        <td class="px-4 py-2 border text-center">{{ $post->post_id }}</td>
-                        <td class="px-4 py-2 border">{{ $post->topic }}</td>
-                        <td class="px-4 py-2 border">{{ $post->categories->topic}}</td>
-                        <td class="px-4 py-2 border">{{ $post->author }}</td>
-                        <td class="px-4 py-2 border">{{ Str::limit($post->description, 50) }}</td>
+                        <td class="px-4 py-2 border text-center">{{ $posts->post_id }}</td>
                         <td class="px-4 py-2 border item-center">
-                            @if($post->images)
-                                <img src="{{ asset('storage/images' , $post->images) }}" class="h-12 w-12 rounded">
-                            @else
-                                No Image
+                            @if ($posts->images)
+                                <img src="{{ asset('storage/' . $posts->images) }}" alt="Post Image" class="mt-3" width="150">
                             @endif
                         </td>
+                        <td class="px-4 py-2 border">{{ $posts->topic }}</td>
+                        <td class="px-4 py-2 border">{{ $posts->categories->topic}}</td>
+                        <td class="px-4 py-2 border">{{ $posts->author }}</td>
+                        <td class="px-4 py-2 border">{{ Str::limit($posts->description, 50) }}</td>
                         <td class="px-4 py-2 border text-center">
-                            <a href="{{route('Post.edit', $post->post_id)}}" class="text-blue-500 hover:underline">Edit</a> |
-                            <form action="{{ route('Post.delete', $post->post_id) }}" method="POST" class="inline-block">
+                            <a href="{{route('Post.edit', $posts->post_id)}}" class="text-blue-500 hover:underline">Edit</a> |
+                            <form action="{{ route('Post.delete', $posts->post_id) }}" method="POST" class="inline-block">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="text-red-500 hover:underline">Delete</button>

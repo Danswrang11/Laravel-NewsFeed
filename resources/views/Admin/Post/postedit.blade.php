@@ -10,7 +10,7 @@
                     <span class="block sm:inline">{{ session('success') }}</span>
                 </div>
             @endif
-            <form action="{{ route('Post.update', $post->post_id) }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('Post.update',['id' => $post->post_id]) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <div class="space-y-4">
@@ -37,6 +37,7 @@
                         <div>
                             <label for="images" class="block text-sm font-medium text-gray-700">Upload Image</label>
                             <input type="file" name="images" id="images" class="mt-1 block w-full p-2 border border-gray-300 rounded-md" accept="image/*">
+                            
                             @if ($post->images)
                                 <img src="{{ asset('storage/' . $post->images) }}" alt="Post Image" class="mt-3" width="150">
                             @endif

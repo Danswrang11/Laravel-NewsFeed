@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Tag;
+use App\Models\Post;
 
 class AdminController extends Controller
 {
@@ -45,6 +46,7 @@ class AdminController extends Controller
     {
         $categoryCount = Category::count();
         $tagCount = Tag::count();
-        return view('Admin/dashboard', compact('categoryCount', 'tagCount')); // Admin dashboard view
+        $posts = Post::orderBy('created_at', 'DESC')->get();
+        return view('Admin/dashboard', compact('posts', 'categoryCount', 'tagCount')); // Admin dashboard view
     }
 }

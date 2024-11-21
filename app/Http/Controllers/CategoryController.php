@@ -27,7 +27,7 @@ class CategoryController extends Controller
 
     public function list()
     {
-        $categories = Category::all(); // Fetch all categories
+        $categories = Category::orderBy('created_at', 'DESC')->get(); // Fetch all categories
         return view('Admin.Categories.listcategory', compact('categories'));
     }
 

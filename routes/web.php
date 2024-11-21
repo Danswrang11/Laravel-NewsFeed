@@ -29,7 +29,7 @@ Route::prefix('Admin')->group(function(){
         Route::get('/List', [PostController::class, 'list'])->name('Post.list');
         //Editing & Delete Category
         Route::get('/{id}/Edit', [PostController::class, 'edit'])->name('Post.edit');
-        Route::put('/Post/{post_id}', [PostController::class, 'update'])->name('Post.update');
+        Route::put('/Post/{id}', [PostController::class, 'update'])->name('Post.update');
         Route::delete('/Post/{id}', [PostController::class, 'delete'])->name('Post.delete');
     })->middleware(AdminMiddleware::class);
 

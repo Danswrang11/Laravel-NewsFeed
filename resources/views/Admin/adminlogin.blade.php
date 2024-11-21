@@ -15,7 +15,7 @@
         <h2 class="text-4xl font-semibold text-center text-gray-800">Admin Login</h2>
 
         @if ($errors->any())
-            <div class="bg-red-600 text-red-700 px-4 py-3 rounded mt-4">
+            <div class="bg-red-400 text-white px-4 py-3 rounded mt-4">
                 <ul>
                     @foreach ($errors->all() as $error)
                         <li>{{ $error }}</li>
